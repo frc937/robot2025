@@ -15,7 +15,6 @@ public class Robot extends TimedRobot {
 
   public Robot() {
     m_robotContainer = new RobotContainer();
-    System.out.println("profesional");
   }
 
   @Override

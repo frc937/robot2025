@@ -40,13 +40,17 @@ public final class Controllers {
   }
 
   /** Configures the robot with default keybinds for competition. */
-  private static void configureDefaultKeybinds() {}
+  private static void configureDefaultKeybinds() {
+    /* TODO: Add controller default keybinds eventually */
+  }
 
   /**
    * Configures the robot with keybinds for if we can't use the operator controller. (All buttons
    * bound to pilotController)
    */
-  private static void configureOperatorlessKeybinds() {}
+  private static void configureOperatorlessKeybinds() {
+    /* TODO: Add controller operatorless keybinds eventually */
+  }
 
   /**
    * Configures robot keybinds.

@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import frc.robot.Controllers.Keymap;
 
 public class RobotContainer {
   public RobotContainer() {
@@ -13,6 +14,8 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
+
+    Controllers.configureKeybinds(Keymap.Default);
   }
 
   public Command getAutonomousCommand() {

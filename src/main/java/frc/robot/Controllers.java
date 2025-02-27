@@ -9,11 +9,20 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import java.util.function.Supplier;
 
-/** Add your docs here. */
+/**
+ * The list of keybinds for our controllers for the robot. Call ONE of these methods in {@link
+ * RobotContainer}'s configureBindings() method.'
+ */
 public final class Controllers {
+
+  /** Xbox controller used by the pilot, who is the student that controls the drivetrain */
   public static CommandXboxController pilotController =
       new CommandXboxController(Constants.Controllers.PILOT_CONTROLLER_PORT);
 
+  /**
+   * Xbox controller used by the operator, who is the student who controls all mechanisms other than
+   * the drivetrain
+   */
   public static CommandXboxController operatorController =
       new CommandXboxController(Constants.Controllers.OPERATOR_CONTROLLER_PORT);
 

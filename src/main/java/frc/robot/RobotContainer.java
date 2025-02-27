@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.Controllers.Keymap;
+import frc.robot.commands.ControlCompressor;
 import frc.robot.subsystems.Compressor;
 
 public class RobotContainer {
@@ -24,6 +25,21 @@ public class RobotContainer {
 
   /** Singleton instance of the intake {@link Compressor} for the whole robot. */
   public static Compressor compressor = new Compressor();
+
+  /*
+   * ************
+   * * COMMANDS *
+   * ************
+   */
+
+  /** Singleton instance of {@link ControlCompressor} for the whole robot. */
+  public static ControlCompressor controlCompressor = new ControlCompressor();
+
+  /*
+   * ***********************
+   * * OTHER INSTANCE VARS *
+   * ***********************
+   */
 
   public RobotContainer() {
     configureBindings();

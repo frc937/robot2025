@@ -25,4 +25,19 @@ public final class Constants {
     /** Axis deadband for driver controller. */
     public static final double DRIVER_CONTROLLER_DEADBAND = 0.1;
   }
+
+  /** The constants for the Compressor */
+  public static final class Compressor {
+    /** The DIO port for the pressure switch. */
+    public static final int PRESSURE_SWITCH_DIO_PORT = 0;
+
+    /** The relay port for the compressor */
+    public static final int COMPRESSOR_RELAY_PORT = 0;
+
+    /**
+     * How many periodic loops do we want to wait for to turn off the compressor. Used to prevent
+     * rapidly turning on and off the compressor.
+     */
+    public static final int COMPRESSOR_PRESSURE_SWITCH_DEADBAND = 50; /* 1 second */
+  }
 }

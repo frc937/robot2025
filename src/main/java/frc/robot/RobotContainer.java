@@ -7,10 +7,44 @@ package frc.robot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.Controllers.Keymap;
+import frc.robot.commands.ControlCompressor;
+import frc.robot.subsystems.Compressor;
 
 public class RobotContainer {
+
+  /*
+   * **************
+   * * SUBSYSTEMS *
+   * **************
+   */
+
+  /* We declare all subsystems as public static because we don't dependency inject because
+   * injecting a dependency through six or seven commands in a chain of command groups would be
+   * awful.
+   */
+
+  /** Singleton instance of the intake {@link Compressor} for the whole robot. */
+  public static Compressor compressor = new Compressor();
+
+  /*
+   * ************
+   * * COMMANDS *
+   * ************
+   */
+
+  /** Singleton instance of {@link ControlCompressor} for the whole robot. */
+  public static ControlCompressor controlCompressor = new ControlCompressor();
+
+  /*
+   * ***********************
+   * * OTHER INSTANCE VARS *
+   * ***********************
+   */
+
   public RobotContainer() {
     configureBindings();
+
+    compressor.setDefaultCommand(controlCompressor);
   }
 
   private void configureBindings() {

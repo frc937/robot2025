@@ -40,4 +40,20 @@ public final class Constants {
      */
     public static final int COMPRESSOR_PRESSURE_SWITCH_DEADBAND = 50; /* 1 second */
   }
+  /** The constants for the Elevator  */
+  public static final class Elevator  {
+
+    /** Motor ID for the left elevator motor */
+    public static final int LEFT_ELEVATOR_MOTOR_ID = 0;
+
+    /** Motor ID for the left elevator motor */
+    public static final int RIGHT_ELEVATOR_MOTOR_ID = 0;  
+
+    /** Dio port Id for the top elevator limit switch*/
+    public static final int ELEVATOR_TOP_LIMIT_SWITCH_DIO_PORT =0;
+    
+    /** DIO port ID for the bottom elevator limit switch */
+    public static final int ELEVATOR_BOTTOM_LIMIT_SWITCH_DIO_PORT =0;
+
+  }
 }

@@ -4,11 +4,25 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.spark.SparkMax;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Elevator extends SubsystemBase {
+
+  private SparkMax leftMotor;
+  private SparkMax rightMotor;
+  private DigitalInput topLimitSwitch;
+  private DigitalInput bottomLimitSwitch;
+
   /** Creates a new Elevator. */
-  public Elevator() {}
+  public Elevator() {
+
+    this.leftMotor = new SparkMax(0, null);
+    this.rightMotor = new SparkMax(0, null);
+    this.topLimitSwitch = new DigitalInput(0);
+    this.bottomLimitSwitch = new DigitalInput(0); 
+  }
 
   @Override
   public void periodic() {

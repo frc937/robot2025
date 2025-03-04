@@ -38,13 +38,13 @@ public class RobotContainer {
    * ************
    */
 
-  /** Singleton instance of {@link ControlCompressor} for the whole robot. */
+  /** Singleton instance of the {@link ControlCompressor} for the whole robot. */
   public static ControlCompressor controlCompressor = new ControlCompressor();
 
-  /** Singleton instance of {@link ExtendElevator} for the whole robot. */
+  /** Singleton instance of the {@link ExtendElevator} for the whole robot. */
   public static ExtendElevator extendElevator = new ExtendElevator();
 
-  /** Singleton instance of {@link RetractElevator} for the whole robot */
+  /** Singleton instance of the {@link RetractElevator} for the whole robot */
   public static RetractElevator retractElevator = new RetractElevator();
 
   /*

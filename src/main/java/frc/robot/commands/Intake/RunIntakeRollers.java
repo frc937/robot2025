@@ -14,14 +14,14 @@ public class RunIntakeRollers extends Command {
 
   /** Creates a new RunIntakeRollers. */
   public RunIntakeRollers() {
-    intakeRollers = RobotContainer.intakeRollers;
+    this.intakeRollers = RobotContainer.intakeRollers;
     addRequirements(intakeRollers);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    intakeRollers.runRollers();
+    this.intakeRollers.runRollers();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -31,12 +31,12 @@ public class RunIntakeRollers extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    intakeRollers.stop();
+    this.intakeRollers.stop();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return this.intakeRollers.getLimitSwitch();
   }
 }

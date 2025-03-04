@@ -29,6 +29,10 @@ public class Elevator extends SubsystemBase {
     this.bottomLimitSwitch =
         new DigitalInput(Constants.Elevator.ELEVATOR_BOTTOM_LIMIT_SWITCH_DIO_PORT);
 
+    configureMotors();
+  }
+
+  private void configureMotors() {
     SparkMaxConfig config = new SparkMaxConfig();
     config.idleMode(Constants.Elevator.ELEVATOR_MOTOR_IDLE_MODE);
     config.smartCurrentLimit(Constants.Elevator.ELEVATOR_MOTOR_CURRENT_LIMIT);

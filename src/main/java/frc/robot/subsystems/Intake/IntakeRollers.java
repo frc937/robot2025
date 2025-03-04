@@ -9,12 +9,14 @@ import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkMaxConfig;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class IntakeRollers extends SubsystemBase {
   private SparkMax upperMotor;
   private SparkMax lowerMotor;
+  private DigitalInput limitSwitch;
 
   /** Creates a new IntakeRollers. */
   public IntakeRollers() {
@@ -22,7 +24,12 @@ public class IntakeRollers extends SubsystemBase {
         new SparkMax(Constants.IntakeRollers.LOWER_INTAKE_MOTOR_ID, MotorType.kBrushless);
     this.upperMotor =
         new SparkMax(Constants.IntakeRollers.UPPER_INTAKE_MOTOR_ID, MotorType.kBrushless);
+    this.limitSwitch = new DigitalInput(Constants.IntakeRollers.INTAKE_LIMIT_SWITCH_DIO_PORT);
 
+    configureMotors();
+  }
+
+  private void configureMotors() {
     SparkMaxConfig config = new SparkMaxConfig();
     config.smartCurrentLimit(Constants.IntakeRollers.INTAKE_MOTOR_CURRENT_LIMIT);
     config.idleMode(Constants.IntakeRollers.INTAKE_IDLE_MODE);
@@ -47,6 +54,17 @@ public class IntakeRollers extends SubsystemBase {
   /** Runs the rollers in reverse. */
   public void runRollersReverse() {
     upperMotor.set(-Constants.IntakeRollers.INTAKE_MOTOR_SPEED);
+  }
+
+  /**
+   * Returns a boolean value on whether or not the extension Limit Switch (for the intake rollers)
+   * has been activated.
+   *
+   * @return the status of the top limit switch
+   */
+  public boolean getLimitSwitch() {
+    /* Assumes the limit switch is wired to be normally closed. */
+    return !limitSwitch.get();
   }
 
   /** Stops the belt. */

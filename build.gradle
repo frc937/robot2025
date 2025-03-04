@@ -110,7 +110,7 @@ spotless {
   format 'misc', {
     target '*.gradle', '.gitignore', '*.txt'
     trimTrailingWhitespace()
-    indentWithSpaces(2)
+    leadingTabsToSpaces(2)
     }
 
   java {

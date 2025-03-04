@@ -4,14 +4,14 @@
 
 package frc.robot.commands.Intake;
 
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 
 /**
  * Deploys the intake pneumatics and runs the rollers; effectively deploys the intake on the bot.
  */
-public class DeployIntake extends ParallelCommandGroup {
+public class DeployIntake extends ParallelDeadlineGroup {
   /** Creates a new DeployIntake. */
   public DeployIntake() {
-    addCommands(new DeployIntake(), new RunIntakeRollers());
+    super(new RunIntakeRollers(), new DeployPneumatics());
   }
 }

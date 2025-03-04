@@ -31,6 +31,7 @@ public final class Constants {
   }
 
   /** The constants for the Compressor */
+  /* TODO: compressor Constants */
   public static final class Compressor {
     /** The DIO port for the pressure switch. */
     public static final int PRESSURE_SWITCH_DIO_PORT = 0;
@@ -46,14 +47,15 @@ public final class Constants {
   }
 
   /** Constants for the elevator System */
+  /* TODO: elevator Constants */
   public static final class Elevator {
-    /** Motor id of the Lower elevator motor. */
+    /** Motor id of the left elevator motor. */
     public static final int LEFT_ELEVATOR_MOTOR_ID = 0;
 
-    /** Motor id of the Upper elevator motor. */
+    /** Motor id of the right elevator motor. */
     public static final int RIGHT_ELEVATOR_MOTOR_ID = 0;
 
-    /** Inversion state of the upper elevator motor. */
+    /** Inversion state of the right elevator motor. */
     public static final boolean RIGHT_ELEVATOR_MOTOR_INVERTED = false;
 
     /** DIO Port ID for the top elevator limit switch. */
@@ -76,12 +78,14 @@ public final class Constants {
   }
 
   /** Constants for the Pneumatics system. */
+  /* TODO: intake Constants */
   public static final class IntakePneumatics {
     /** The ID for the relay that controls the Intake's solenoids */
     public static final int INTAKE_SOLENOID_RELAY_ID = 0;
   }
 
   /** Constants for the Intake rollers. */
+  /* TODO: intake rollers Constants */
   public static final class IntakeRollers {
     /** The CAN ID for the upper intake motor */
     public static final int UPPER_INTAKE_MOTOR_ID = 0;
@@ -100,6 +104,9 @@ public final class Constants {
 
     /** Current limit (in amps) for the intake motor(s) */
     public static final int INTAKE_MOTOR_CURRENT_LIMIT = 0;
+
+    /** DIO Port ID for the intake roller limit switch. */
+    public static final int INTAKE_LIMIT_SWITCH_DIO_PORT = 0;
 
     /** Idle mode for the intake motors. (Either brake or coast) */
     public static final IdleMode INTAKE_IDLE_MODE = IdleMode.kBrake;

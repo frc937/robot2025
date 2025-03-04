@@ -6,10 +6,11 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
-import frc.robot.Constants.Elevator;
 import frc.robot.Controllers.Keymap;
 import frc.robot.commands.ControlCompressor;
+import frc.robot.commands.ExtendElevator;
 import frc.robot.subsystems.Compressor;
+import frc.robot.subsystems.Elevator;
 
 public class RobotContainer {
 
@@ -28,6 +29,7 @@ public class RobotContainer {
   public static Compressor compressor = new Compressor();
 
   public static Elevator elevator = new Elevator();
+
   /*
    * ************
    * * COMMANDS *
@@ -36,6 +38,8 @@ public class RobotContainer {
 
   /** Singleton instance of {@link ControlCompressor} for the whole robot. */
   public static ControlCompressor controlCompressor = new ControlCompressor();
+
+  public static ExtendElevator extendElevator = new ExtendElevator();
 
   /*
    * ***********************

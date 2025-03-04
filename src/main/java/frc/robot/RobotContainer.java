@@ -25,9 +25,10 @@ public class RobotContainer {
    * awful.
    */
 
-  /** Singleton instance of the intake {@link Compressor} for the whole robot. */
+  /** Singleton instance of {@link Compressor} for the whole robot. */
   public static Compressor compressor = new Compressor();
 
+  /** Singleton instance of {@link Elevator} for the whole robot */
   public static Elevator elevator = new Elevator();
 
   /*
@@ -39,6 +40,7 @@ public class RobotContainer {
   /** Singleton instance of {@link ControlCompressor} for the whole robot. */
   public static ControlCompressor controlCompressor = new ControlCompressor();
 
+  /** Singleton instance of {@link ExtendElevator} for the whole robot. */
   public static ExtendElevator extendElevator = new ExtendElevator();
 
   /*

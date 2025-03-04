@@ -8,7 +8,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.Controllers.Keymap;
 import frc.robot.commands.ControlCompressor;
+import frc.robot.commands.ExtendElevator;
+import frc.robot.commands.RetractElevator;
 import frc.robot.subsystems.Compressor;
+import frc.robot.subsystems.Elevator;
 
 public class RobotContainer {
 
@@ -23,8 +26,11 @@ public class RobotContainer {
    * awful.
    */
 
-  /** Singleton instance of the intake {@link Compressor} for the whole robot. */
+  /** Singleton instance of {@link Compressor} for the whole robot. */
   public static Compressor compressor = new Compressor();
+
+  /** Singleton instance of {@link Elevator} for the whole robot */
+  public static Elevator elevator = new Elevator();
 
   /*
    * ************
@@ -32,8 +38,14 @@ public class RobotContainer {
    * ************
    */
 
-  /** Singleton instance of {@link ControlCompressor} for the whole robot. */
+  /** Singleton instance of the {@link ControlCompressor} for the whole robot. */
   public static ControlCompressor controlCompressor = new ControlCompressor();
+
+  /** Singleton instance of the {@link ExtendElevator} for the whole robot. */
+  public static ExtendElevator extendElevator = new ExtendElevator();
+
+  /** Singleton instance of the {@link RetractElevator} for the whole robot */
+  public static RetractElevator retractElevator = new RetractElevator();
 
   /*
    * ***********************

@@ -13,7 +13,7 @@ import com.revrobotics.spark.config.SparkMaxConfig;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-
+/** Elevator of the robot */
 public class Elevator extends SubsystemBase {
 
   private SparkMax leftMotor;
@@ -42,12 +42,20 @@ private void configureMotors() {
   rightMotorConfig.inverted(Constants.Elevator.RIGHT_ELEVATOR_MOTOR_INVERTED);
 
 
-  this.leftMotor.configure(leftMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-  this.rightMotor.configure(rightMotorConfig,ResetMode.kResetSafeParameters,PersistMode.kPersistParameters);
+  this.leftMotor.configure(leftMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
+  this.rightMotor.configure(rightMotorConfig,ResetMode.kResetSafeParameters,PersistMode.kNoPersistParameters);
 }
+/** Runs the Elevator motor */
+public void extendElevator( ) {
+  
+  rightMotor.set(Constants.Elevator.ELEVATOR_MOTOR_SPEED);
 
+}
+/** Runs the elevator motors in reverse */
+public void retractElevator(){
 
-
+  rightMotor.set(-Constants.Elevator.ELEVATOR_MOTOR_SPEED);
+}
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

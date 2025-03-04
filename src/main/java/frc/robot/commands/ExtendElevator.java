@@ -11,7 +11,7 @@ import frc.robot.subsystems.Elevator;
 /** Command that extends on elevator on the robot */
 public class ExtendElevator extends Command {
 
-private Elevator elevator;
+  private Elevator elevator;
 
   /** Creates a new ExtendElevator. */
   public ExtendElevator() {
@@ -19,14 +19,10 @@ private Elevator elevator;
     addRequirements(this.elevator);
   }
 
-
-
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-  this.elevator.extendElevator();
-
-
+    this.elevator.extendElevator();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

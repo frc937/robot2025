@@ -8,14 +8,14 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Elevator;
 
-/* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
+/** Command that retracts elevator on robot */
 public class RetractElevator extends Command {
-  
+
   public Elevator elevator;
 
   /** Creates a new RetractElevator. */
   public RetractElevator() {
-   
+
     this.elevator = RobotContainer.elevator;
     addRequirements(this.elevator);
   }
@@ -42,6 +42,5 @@ public class RetractElevator extends Command {
   @Override
   public boolean isFinished() {
     return elevator.getBottomLimitSwitch();
-    
   }
 }

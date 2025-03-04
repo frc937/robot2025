@@ -82,7 +82,8 @@ public class Elevator extends SubsystemBase {
     /*assumes the limit switch is wired to be closed */
     return !bottomLimitSwitch.get();
   }
-/** Stops the elevator motors */
+
+  /** Stops the elevator motors */
   public void stop() {
 
     rightMotor.set(0);

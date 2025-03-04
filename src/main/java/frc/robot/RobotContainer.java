@@ -44,6 +44,7 @@ public class RobotContainer {
   /** Singleton instance of {@link ExtendElevator} for the whole robot. */
   public static ExtendElevator extendElevator = new ExtendElevator();
 
+  /** Singleton instance of {@link RetractElevator} for the whole robot */
   public static RetractElevator retractElevator = new RetractElevator();
 
   /*

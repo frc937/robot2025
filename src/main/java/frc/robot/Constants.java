@@ -70,7 +70,7 @@ public final class Constants {
     /** The current limit (in amps) for the elevator motor(s). */
     public static final int ELEVATOR_MOTOR_CURRENT_LIMIT = 0;
 
-    /** Idle mode for the elevator motors.(Either break or coast) */
+    /** Idle mode for the elevator motors (Either break or coast). */
     public static final IdleMode ELEVATOR_MOTOR_IDLE_MODE = IdleMode.kBrake;
   }
 }

@@ -33,6 +33,9 @@ public class RobotContainer {
   /** Singleton instance of {@link Elevator} for the whole robot */
   public static Elevator elevator = new Elevator();
 
+  /** Singleton instance of the {@link IntakeRollers} for the whole robot */
+  public static IntakeRollers intakeRollers = new IntakeRollers();
+
   /*
    * ************
    * * COMMANDS *
@@ -47,8 +50,6 @@ public class RobotContainer {
 
   /** Singleton instance of the {@link RetractElevator} for the whole robot */
   public static RetractElevator retractElevator = new RetractElevator();
-
-  public static IntakeRollers intakeRollers = new IntakeRollers();
 
   /*
    * ***********************

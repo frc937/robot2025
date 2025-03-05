@@ -8,16 +8,15 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.intake.IntakeRollers;
 
-/** Command for running the intake rollers in reverse*/
+/** Command for running the intake rollers in reverse */
 public class RunIntakeRollersReverse extends Command {
 
   private IntakeRollers intakeRollers;
+
   /** Creates a new RunIntakeRollersReverse. */
   public RunIntakeRollersReverse() {
     this.intakeRollers = RobotContainer.intakeRollers;
     addRequirements(this.intakeRollers);
-
-
   }
 
   // Called when the command is initially scheduled.

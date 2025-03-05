@@ -8,25 +8,20 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.intake.IntakeRollers;
 
-
-/**Command for running the rollers on the Intake */
+/** Command for running the rollers on the Intake */
 public class RunIntakeRollers extends Command {
-  private IntakeRollers intakeRollers ;
-  /** Creates a new RunIntakeRollers. */
+  private IntakeRollers intakeRollers;
 
+  /** Creates a new RunIntakeRollers. */
   public RunIntakeRollers() {
-  this.intakeRollers = RobotContainer.intakeRollers;
-  addRequirements(this.intakeRollers);
+    this.intakeRollers = RobotContainer.intakeRollers;
+    addRequirements(this.intakeRollers);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     this.intakeRollers.runRollers();
-
-
-
-
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -36,8 +31,6 @@ public class RunIntakeRollers extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-
-
 
     this.intakeRollers.stop();
   }

@@ -80,6 +80,16 @@ public static final int LOWER_INTAKE_MOTOR_ID = 0;
 public static final int  UPPER_INTAKE_MOTOR_ID = 0;
 public static final int INTAKE_LIMIT_SWITCH_DIO_PORT =0;
 
+public static final  boolean UPPER_INTAKE_MOTOR_INVERTED = false;
+
+public static final double INTAKE_MOTOR_SPEED = 0;
+
+public static final boolean INTAKE_FOLLOWER_INVERSE_STATE = false;
+
+public static final int INTAKE_MOTOR_CURRENT_LIMIT = 0;
+
+public static final IdleMode INTAKE_MOTOR_IDLE_MODE = IdleMode.kBrake;
+
   }
 
   

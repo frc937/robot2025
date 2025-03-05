@@ -68,6 +68,16 @@ upperMotor.set(Constants.IntakeRollers.INTAKE_MOTOR_SPEED);
 upperMotor.set(-Constants.IntakeRollers.INTAKE_MOTOR_SPEED);
 
   }
+
+  public boolean getLimitSwitch(){
+
+return !limitSwitch.get();
+
+  }
+
+  
+  
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

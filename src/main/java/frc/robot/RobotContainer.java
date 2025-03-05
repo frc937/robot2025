@@ -6,13 +6,14 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
-import frc.robot.Constants.IntakeRollers;
 import frc.robot.Controllers.Keymap;
 import frc.robot.commands.ControlCompressor;
 import frc.robot.commands.ExtendElevator;
 import frc.robot.commands.RetractElevator;
+import frc.robot.commands.Intake.RunIntakeRollers;
 import frc.robot.subsystems.Compressor;
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.intake.IntakeRollers;
 
 public class RobotContainer {
 
@@ -50,6 +51,9 @@ public class RobotContainer {
 
   /** Singleton instance of the {@link RetractElevator} for the whole robot */
   public static RetractElevator retractElevator = new RetractElevator();
+/** Singleton instance of the {@link RetractElevator} for the whole robot */
+  public static RunIntakeRollers runIntakeRollers = new RunIntakeRollers();
+
 
   /*
    * ***********************

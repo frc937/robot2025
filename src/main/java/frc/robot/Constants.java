@@ -73,4 +73,14 @@ public final class Constants {
     /** Idle mode for the elevator motors (Either break or coast). */
     public static final IdleMode ELEVATOR_MOTOR_IDLE_MODE = IdleMode.kBrake;
   }
+
+  public static final class IntakeRollers{
+
+public static final int LOWER_INTAKE_MOTOR_ID = 0;
+public static final int  UPPER_INTAKE_MOTOR_ID = 0;
+public static final int INTAKE_LIMIT_SWITCH_DIO_PORT =0;
+
+  }
+
+  
 }

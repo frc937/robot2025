@@ -4,11 +4,28 @@
 
 package frc.robot.subsystems.intake;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+
+
+/**Subsystem for the intake rollers */
 public class IntakeRollers extends SubsystemBase {
+  
+  private SparkMax upperMotor;
+  private SparkMax lowerMotor;
+  private DigitalInput limitSwitch;
+  
   /** Creates a new IntakeRollers. */
-  public IntakeRollers() {}
+  public IntakeRollers() {
+
+    this.upperMotor = new SparkMax(Constants.IntakeRollers.UPPER_INTAKE_MOTOR_ID, MotorType.kBrushless);
+    this.lowerMotor = new SparkMax( Constants.IntakeRollers.LOWER_INTAKE_MOTOR_ID, MotorType.kBrushless);
+    this.limitSwitch = new DigitalInput(Constants.IntakeRollers.INTAKE_LIMIT_SWITCH_DIO_PORT);
+  }
 
   @Override
   public void periodic() {

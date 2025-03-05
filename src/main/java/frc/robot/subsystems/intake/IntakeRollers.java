@@ -75,7 +75,10 @@ return !limitSwitch.get();
 
   }
 
-  
+  public void stop(){
+
+    upperMotor.set(0);
+  }
   
 
   @Override

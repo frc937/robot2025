@@ -30,6 +30,8 @@ public class Elevator extends SubsystemBase {
     this.topLimitSwitch = new DigitalInput(Constants.Elevator.ELEVATOR_TOP_LIMIT_SWITCH_DIO_PORT);
     this.bottomLimitSwitch =
         new DigitalInput(Constants.Elevator.ELEVATOR_BOTTOM_LIMIT_SWITCH_DIO_PORT);
+
+      configureMotors();
   }
 
   private void configureMotors() {

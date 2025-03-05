@@ -51,8 +51,6 @@ public final class Controllers {
   /** Configures the robot with default keybinds for competition. */
   private static void configureDefaultKeybinds() {
     /* TODO: Add controller default keybinds eventually */
-    operatorController.y().whileTrue(RobotContainer.extendElevator);
-    operatorController.a().whileTrue(RobotContainer.retractElevator);
     operatorController.rightTrigger().whileTrue(RobotContainer.deployIntake);
   }
 

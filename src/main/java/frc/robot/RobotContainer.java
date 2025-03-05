@@ -8,13 +8,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.Controllers.Keymap;
 import frc.robot.commands.ControlCompressor;
-import frc.robot.commands.ExtendElevator;
 import frc.robot.commands.Intake.DeployIntake;
 import frc.robot.commands.Intake.DeployPneumatics;
 import frc.robot.commands.Intake.RunIntakeRollers;
-import frc.robot.commands.RetractElevator;
 import frc.robot.subsystems.Compressor;
-import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake.IntakePneumatics;
 import frc.robot.subsystems.Intake.IntakeRollers;
 
@@ -34,9 +31,6 @@ public class RobotContainer {
   /** Singleton instance of the {@link Compressor} for the whole robot. */
   public static Compressor compressor = new Compressor();
 
-  /** Singleton instance of the {@link Elevator} for the whole robot */
-  public static Elevator elevator = new Elevator();
-
   /** Singleton instance of the {@link IntakePneumatics} */
   public static IntakePneumatics intakePneumatics = new IntakePneumatics();
 
@@ -51,12 +45,6 @@ public class RobotContainer {
 
   /** Singleton instance of {@link ControlCompressor} for the whole robot. */
   public static ControlCompressor controlCompressor = new ControlCompressor();
-
-  /** Singleton instance of {@link ExtendElevator} for the whole robot} */
-  public static ExtendElevator extendElevator = new ExtendElevator();
-
-  /** Singleton instance of {@link RetractElevator} for the whole robot */
-  public static RetractElevator retractElevator = new RetractElevator();
 
   /** Singleton instance of {@link DeployIntake} for the whole robot */
   public static DeployIntake deployIntake = new DeployIntake();

@@ -11,6 +11,7 @@ import frc.robot.commands.ControlCompressor;
 import frc.robot.commands.ExtendElevator;
 import frc.robot.commands.RetractElevator;
 import frc.robot.commands.Intake.RunIntakeRollers;
+import frc.robot.commands.Intake.RunIntakeRollersReverse;
 import frc.robot.subsystems.Compressor;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.intake.IntakeRollers;
@@ -51,8 +52,10 @@ public class RobotContainer {
 
   /** Singleton instance of the {@link RetractElevator} for the whole robot */
   public static RetractElevator retractElevator = new RetractElevator();
-/** Singleton instance of the {@link RetractElevator} for the whole robot */
+/** Singleton instance of the {@link RunIntakeRollers} for the whole robot */
   public static RunIntakeRollers runIntakeRollers = new RunIntakeRollers();
+/**Singleton instance of the {@link RunIntakeRollersReverse} */
+  public static RunIntakeRollersReverse runIntakeRollersReverse = new RunIntakeRollersReverse();
 
 
   /*

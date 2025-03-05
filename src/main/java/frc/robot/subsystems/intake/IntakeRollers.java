@@ -52,6 +52,21 @@ this.upperMotor.configure(
 upperMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
 
 
+
+
+  }
+
+  public void runRollers(){
+upperMotor.set(Constants.IntakeRollers.INTAKE_MOTOR_SPEED);
+
+
+  }
+
+
+  public void runRollersReverse(){
+
+upperMotor.set(-Constants.IntakeRollers.INTAKE_MOTOR_SPEED);
+
   }
   @Override
   public void periodic() {

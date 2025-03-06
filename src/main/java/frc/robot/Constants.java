@@ -73,4 +73,23 @@ public final class Constants {
     /** Idle mode for the elevator motors (Either break or coast). */
     public static final IdleMode ELEVATOR_MOTOR_IDLE_MODE = IdleMode.kBrake;
   }
+
+  public static final class IntakeRollers {
+    /**Motor ID for the Lower intake motor */
+    public static final int LOWER_INTAKE_MOTOR_ID = 0;
+    /**Motor ID for the Upper intake motor */
+    public static final int UPPER_INTAKE_MOTOR_ID = 0;
+    /**Dio port ID for the intake limit switch */
+    public static final int INTAKE_LIMIT_SWITCH_DIO_PORT = 0;
+    /**Inversion state of the upper intake motor */
+    public static final boolean UPPER_INTAKE_MOTOR_INVERTED = false;
+    /**speed we want the intake roller motors at */
+    public static final double INTAKE_MOTOR_SPEED = 0;
+    /**Inversion state of the followwer intake motor */
+    public static final boolean INTAKE_FOLLOWER_INVERSE_STATE = false;
+    /**The current limit (in amps) for the elevator motor(s). */
+    public static final int INTAKE_MOTOR_CURRENT_LIMIT = 0;
+    /**Idle mode for the elvator motors (Either break or coast) */
+    public static final IdleMode INTAKE_MOTOR_IDLE_MODE = IdleMode.kBrake;
+  }
 }

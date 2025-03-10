@@ -54,6 +54,7 @@ public final class Controllers {
     operatorController.rightBumper().whileTrue(RobotContainer.runIntakeRollersReverse);
     /*TODO:Set intake routine to left trigger*/
     /*TODO:Fire algea routine */
+    /*TODO: Add extend intake keybind */
     operatorController.x().whileTrue(RobotContainer.retractElevator);
     operatorController.y().whileTrue(RobotContainer.extendElevator);
   }
@@ -63,7 +64,16 @@ public final class Controllers {
    * bound to pilotController)
    */
   private static void configureOperatorlessKeybinds() {
-    /* TODO: Add controller operatorless keybinds eventually */
+  
+    pilotController.leftBumper().whileTrue(RobotContainer.runIntakeRollers);
+    pilotController.rightBumper().whileTrue(RobotContainer.runIntakeRollersReverse);
+    /*TODO:Set intake routine to left trigger*/
+    /*TODO: Fire algea routine */
+    /*TODO:Add extend intake keybind */
+    pilotController.x().whileTrue(RobotContainer.retractElevator);
+    pilotController.y().whileTrue(RobotContainer.extendElevator);
+
+
   }
 
   /**

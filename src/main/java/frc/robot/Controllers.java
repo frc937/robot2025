@@ -50,7 +50,12 @@ public final class Controllers {
 
   /** Configures the robot with default keybinds for competition. */
   private static void configureDefaultKeybinds() {
-    /* TODO: Add controller default keybinds eventually */
+    operatorController.leftBumper().whileTrue(RobotContainer.runIntakeRollers);
+    operatorController.rightBumper().whileTrue(RobotContainer.runIntakeRollersReverse);
+    /*TODO:Set intake routine to left trigger*/
+    /*TODO:Fire algea routine */
+    operatorController.x().whileTrue(RobotContainer.retractElevator);
+    operatorController.y().whileTrue(RobotContainer.extendElevator);
   }
 
   /**

@@ -45,14 +45,18 @@ public class Drive extends SubsystemBase {
    *
    * @return Maximum speed the robot chassis can achieve in m/s.
    */
-  public double getMaximumSpeed() {}
+  public double getMaximumSpeed() {
+    return -1.0;
+  }
 
   /**
    * Gets the maximum angular speed the robot chassis can achieve in rad/s.
    *
    * @return Maximum angular speed the robot chassis can achieve in rad/s.
    */
-  public double getMaximumAngularSpeed() {}
+  public double getMaximumAngularSpeed() {
+    return -1.0;
+  }
 
   /**
    * Set the heading correction capabilities of YAGSL. Should only be enabled when heading
@@ -74,7 +78,9 @@ public class Drive extends SubsystemBase {
    * @return {@link ChassisSpeeds} object that represents the commanded robot velocities
    */
   public ChassisSpeeds getTargetSpeeds(
-      double translationX, double translationY, double headingX, double headingY) {}
+      double translationX, double translationY, double headingX, double headingY) {
+        return new ChassisSpeeds();
+      }
 
   /**
    * Sets the drive mode in SmartDashboard.
@@ -90,7 +96,9 @@ public class Drive extends SubsystemBase {
    *
    * @return The heading of the robot.
    */
-  public Rotation2d getHeading() {}
+  public Rotation2d getHeading() {
+    return new Rotation2d();
+  }
 
   /** Runs every scheduler run. */
   @Override

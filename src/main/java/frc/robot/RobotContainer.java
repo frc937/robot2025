@@ -13,6 +13,7 @@ import frc.robot.commands.Intake.RunIntakeRollers;
 import frc.robot.commands.Intake.RunIntakeRollersReverse;
 import frc.robot.commands.RetractElevator;
 import frc.robot.subsystems.Compressor;
+import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.intake.IntakeRollers;
 
@@ -37,6 +38,9 @@ public class RobotContainer {
 
   /** Singleton instance of the {@link IntakeRollers} for the whole robot */
   public static IntakeRollers intakeRollers = new IntakeRollers();
+
+  /** Singleton instance of the {@link Drive drivetrain} for the whole robot */
+  public static Drive drive = new Drive();
 
   /*
    * ************

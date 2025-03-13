@@ -7,13 +7,46 @@ package frc.robot.subsystems;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.networktables.GenericEntry;
+import edu.wpi.first.wpilibj.Filesystem;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+import java.io.File;
+import java.io.IOException;
+import swervelib.SwerveDrive;
+import swervelib.parser.SwerveParser;
 
 /** The subsystem that represents the drivetrain. */
 public class Drive extends SubsystemBase {
+  private SwerveDrive drive;
+  private ShuffleboardTab debugTab = Shuffleboard.getTab("Debug");
+  private GenericEntry[] encoderEntries = {
+    debugTab.add("FL Encoder", 0).getEntry(),
+    debugTab.add("FR Encoder", 0).getEntry(),
+    debugTab.add("BL Encoder", 0).getEntry(),
+    debugTab.add("BR Encoder", 0).getEntry(),
+  };
+
+  private GenericEntry driveLabelEntry =
+  Shuffleboard.getTab("Driver").add("Drive Mode", "").getEntry();
 
   /** Creates a new Drive. */
-  public Drive() {}
+  public Drive() {
+    /* Try-catch because otherwise the compiler tries to anticipate runtime errors and throws a
+     * comp-time error for a missing file even though it shouldn't
+     */
+    try {
+      drive =
+          new SwerveParser(new File(Filesystem.getDeployDirectory(), "swerve"))
+              .createSwerveDrive(Constants.Swerve.MAX_SPEED);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    drive.setMotorIdleMode(Constants.Swerve.MOTOR_BREAK_ON_IDLE);
+  }
 
   /**
    * Drives the robot in either field relative or robot relative.
@@ -24,13 +57,19 @@ public class Drive extends SubsystemBase {
    *     positive.
    * @param isFieldOriented If the robot should either drive field oriented or robot oriented.
    */
-  public void driveRobot(Translation2d translation, double z, boolean isFieldOriented) {}
+  public void driveRobot(Translation2d translation, double z, boolean isFieldOriented) {
+    drive.drive(translation, z, isFieldOriented, false);
+  }
 
   /** Stops all motors in the subsystem. */
-  public void stop() {}
+  public void stop() {
+    drive.drive(Constants.Swerve.ZERO_TRANSLATION, 0, false, false);
+  }
 
   /** Points the wheels toward the inside and stops the wheels from moving in any direction. */
-  public void enterXMode() {}
+  public void enterXMode() {
+    drive.lockPose();
+  }
 
   /**
    * Zeroes the NavX gyro. Mostly used for resetting the angle for field-oriented drive (for now).
@@ -38,7 +77,9 @@ public class Drive extends SubsystemBase {
    * <p>Somewhat notably, this will also reset odometry to the same position it's currently at, but
    * facing towards zero.
    */
-  public void zeroGyro() {}
+  public void zeroGyro() {
+    drive.zeroGyro();
+  }
 
   /**
    * Gets the maximum speed the robot chassis can achieve in m/s.
@@ -46,7 +87,7 @@ public class Drive extends SubsystemBase {
    * @return Maximum speed the robot chassis can achieve in m/s.
    */
   public double getMaximumSpeed() {
-    return -1.0;
+    return Math.min(drive.getMaximumChassisVelocity(), Constants.Swerve.THEORETICAL_MAX_SPEED);
   }
 
   /**
@@ -55,7 +96,8 @@ public class Drive extends SubsystemBase {
    * @return Maximum angular speed the robot chassis can achieve in rad/s.
    */
   public double getMaximumAngularSpeed() {
-    return -1.0;
+    return Math.min(
+        drive.getMaximumChassisAngularVelocity(), Constants.Swerve.THEORETICAL_MAX_ANGULAR_SPEED);
   }
 
   /**
@@ -64,7 +106,9 @@ public class Drive extends SubsystemBase {
    *
    * @param state SwerveDrive.headingCorrection state
    */
-  public void setHeadingCorrection(boolean state) {}
+  public void setHeadingCorrection(boolean state) {
+    drive.setHeadingCorrection(state);
+  }
 
   /**
    * Takes [-1, 1] joystick-like inputs and converts them to a {@link ChassisSpeeds} object that
@@ -79,8 +123,14 @@ public class Drive extends SubsystemBase {
    */
   public ChassisSpeeds getTargetSpeeds(
       double translationX, double translationY, double headingX, double headingY) {
-        return new ChassisSpeeds();
-      }
+    return drive.swerveController.getTargetSpeeds(
+        translationX,
+        translationY,
+        headingX,
+        headingY,
+        drive.getPose().getRotation().getRadians(),
+        getMaximumSpeed());
+  }
 
   /**
    * Sets the drive mode in SmartDashboard.
@@ -89,7 +139,10 @@ public class Drive extends SubsystemBase {
    *
    * @param driveMode The mode to display in SmartDashboard.
    */
-  public void setDriveMode(String driveMode) {}
+  // TOOD: Implement
+  public void setDriveMode(String driveMode) {
+    driveLabelEntry.setString(driveMode);
+  }
 
   /**
    * Returns the heading of the robot.
@@ -97,10 +150,15 @@ public class Drive extends SubsystemBase {
    * @return The heading of the robot.
    */
   public Rotation2d getHeading() {
-    return new Rotation2d();
+    return drive.getPose().getRotation();
   }
 
   /** Runs every scheduler run. */
   @Override
-  public void periodic() {}
+  public void periodic() {
+    encoderEntries[0].setDouble(drive.getModules()[0].getAbsolutePosition()); // FL
+    encoderEntries[1].setDouble(drive.getModules()[1].getAbsolutePosition()); // FR
+    encoderEntries[2].setDouble(drive.getModules()[2].getAbsolutePosition()); // BL
+    encoderEntries[3].setDouble(drive.getModules()[3].getAbsolutePosition()); // BR
+  }
 }

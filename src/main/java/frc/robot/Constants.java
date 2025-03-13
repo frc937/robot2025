@@ -5,6 +5,8 @@
 package frc.robot;
 
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.util.Units;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -98,5 +100,20 @@ public final class Constants {
 
     /** Idle mode for the elvator motors (Either break or coast) */
     public static final IdleMode INTAKE_MOTOR_IDLE_MODE = IdleMode.kBrake;
+  }
+
+  public static final class Swerve {
+    /** The max speed the robot can go in m/s */
+    public static final double MAX_SPEED = Units.feetToMeters(14.5);
+    /** Should the drivetrain motors break on  */
+    public static final boolean MOTOR_BREAK_ON_IDLE = true;
+    /** An empty translation for the robot. */
+    public static final Translation2d ZERO_TRANSLATION = new Translation2d();
+
+    /** The theoretical max speed the robot can go in m/s */
+    public static final double THEORETICAL_MAX_SPEED = 100;
+
+    /** The theoretical max speed the robot can rotate */
+    public static final double THEORETICAL_MAX_ANGULAR_SPEED = 100;
   }
 }

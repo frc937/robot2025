@@ -40,12 +40,12 @@ public class Drive extends SubsystemBase {
     try {
       drive =
           new SwerveParser(new File(Filesystem.getDeployDirectory(), "swerve"))
-              .createSwerveDrive(Constants.Swerve.MAX_SPEED);
+              .createSwerveDrive(Constants.Drivetrain.MAX_SPEED);
     } catch (IOException e) {
       e.printStackTrace();
     }
 
-    drive.setMotorIdleMode(Constants.Swerve.MOTOR_BREAK_ON_IDLE);
+    drive.setMotorIdleMode(Constants.Drivetrain.MOTOR_BREAK_ON_IDLE);
   }
 
   /**
@@ -63,7 +63,7 @@ public class Drive extends SubsystemBase {
 
   /** Stops all motors in the subsystem. */
   public void stop() {
-    drive.drive(Constants.Swerve.ZERO_TRANSLATION, 0, false, false);
+    drive.drive(Constants.Drivetrain.ZERO_TRANSLATION, 0, false, false);
   }
 
   /** Points the wheels toward the inside and stops the wheels from moving in any direction. */
@@ -87,7 +87,7 @@ public class Drive extends SubsystemBase {
    * @return Maximum speed the robot chassis can achieve in m/s.
    */
   public double getMaximumSpeed() {
-    return Math.min(drive.getMaximumChassisVelocity(), Constants.Swerve.THEORETICAL_MAX_SPEED);
+    return Math.min(drive.getMaximumChassisVelocity(), Constants.Drivetrain.THEORETICAL_MAX_SPEED);
   }
 
   /**
@@ -97,7 +97,7 @@ public class Drive extends SubsystemBase {
    */
   public double getMaximumAngularSpeed() {
     return Math.min(
-        drive.getMaximumChassisAngularVelocity(), Constants.Swerve.THEORETICAL_MAX_ANGULAR_SPEED);
+        drive.getMaximumChassisAngularVelocity(), Constants.Drivetrain.THEORETICAL_MAX_ANGULAR_SPEED);
   }
 
   /**

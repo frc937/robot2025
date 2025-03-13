@@ -101,8 +101,8 @@ public final class Constants {
     /** Idle mode for the elvator motors (Either break or coast) */
     public static final IdleMode INTAKE_MOTOR_IDLE_MODE = IdleMode.kBrake;
   }
-
-  public static final class Swerve {
+  /** The constants for the drivetrain */
+  public static final class Drivetrain {
     /** The max speed the robot can go in m/s */
     public static final double MAX_SPEED = Units.feetToMeters(14.5);
     /** Should the drivetrain motors break on  */

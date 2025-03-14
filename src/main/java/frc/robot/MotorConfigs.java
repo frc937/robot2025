@@ -12,25 +12,24 @@ import com.revrobotics.spark.config.SparkMaxConfig;
 /** Add your docs here. */
 public final class MotorConfigs {
 
-  public static SparkMaxConfig generalConfig;
-
-  public static SparkMaxConfig upperMotorConfig;
-  public static SparkMaxConfig lowerMotorConfig;
+  private static SparkMaxConfig leadingMotorConfig;
+  private static SparkMaxConfig followingMotorConfig;
 
   public static void initRollerConfigs(SparkMax leadingMotor, SparkMax followerMotor) {
     SparkMaxConfig generalIntakeRollerConfig = new SparkMaxConfig();
     generalIntakeRollerConfig.idleMode(Constants.IntakeRollers.INTAKE_MOTOR_IDLE_MODE);
     generalIntakeRollerConfig.smartCurrentLimit(Constants.IntakeRollers.INTAKE_MOTOR_CURRENT_LIMIT);
 
-    upperMotorConfig = new SparkMaxConfig().apply(generalIntakeRollerConfig);
-    lowerMotorConfig = new SparkMaxConfig().apply(generalIntakeRollerConfig);
+    leadingMotorConfig = new SparkMaxConfig().apply(generalIntakeRollerConfig);
+    followingMotorConfig = new SparkMaxConfig().apply(generalIntakeRollerConfig);
 
-    lowerMotorConfig.follow(followerMotor, Constants.IntakeRollers.INTAKE_FOLLOWER_INVERSE_STATE);
-    upperMotorConfig.inverted(Constants.IntakeRollers.UPPER_INTAKE_MOTOR_INVERTED);
+    followingMotorConfig.follow(followerMotor, Constants.IntakeRollers.INTAKE_FOLLOWER_INVERSE_STATE);
+    leadingMotorConfig.inverted(Constants.IntakeRollers.UPPER_INTAKE_MOTOR_INVERTED);
 
     leadingMotor.configure(
-        lowerMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
+        followingMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
     followerMotor.configure(
-        upperMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
+        leadingMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
   }
+
 }

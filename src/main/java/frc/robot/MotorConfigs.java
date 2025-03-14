@@ -7,6 +7,7 @@ package frc.robot;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
 /** Utility class for configuring desired motors */
@@ -15,6 +16,13 @@ public final class MotorConfigs {
   private static SparkMaxConfig leadingMotorConfig;
   private static SparkMaxConfig followingMotorConfig;
 
+  private static SparkMaxConfig configureGeneralConfig(IdleMode idleMode, int motorCurrentLimit) {
+    SparkMaxConfig generalConfig = new SparkMaxConfig();
+    generalConfig.idleMode(idleMode);
+    generalConfig.smartCurrentLimit(motorCurrentLimit);
+    return generalConfig;
+  }
+
   /**
    * Configures the Roller Motors for the intake, using the relavent constants.
    *
@@ -22,9 +30,10 @@ public final class MotorConfigs {
    * @param followerMotor The motor that follows the leading motor.
    */
   public static void initRollerConfigs(SparkMax leadingMotor, SparkMax followerMotor) {
-    SparkMaxConfig generalIntakeRollerConfig = new SparkMaxConfig();
-    generalIntakeRollerConfig.idleMode(Constants.IntakeRollers.INTAKE_MOTOR_IDLE_MODE);
-    generalIntakeRollerConfig.smartCurrentLimit(Constants.IntakeRollers.INTAKE_MOTOR_CURRENT_LIMIT);
+    SparkMaxConfig generalIntakeRollerConfig =
+        configureGeneralConfig(
+            Constants.IntakeRollers.INTAKE_MOTOR_IDLE_MODE,
+            Constants.IntakeRollers.INTAKE_MOTOR_CURRENT_LIMIT);
 
     leadingMotorConfig = new SparkMaxConfig().apply(generalIntakeRollerConfig);
     followingMotorConfig = new SparkMaxConfig().apply(generalIntakeRollerConfig);
@@ -46,9 +55,10 @@ public final class MotorConfigs {
    * @param followerMotor The motor that follows the leading motor.
    */
   public static void initElevatorConfigs(SparkMax leadingMotor, SparkMax followerMotor) {
-    SparkMaxConfig generalElevatorConfig = new SparkMaxConfig();
-    generalElevatorConfig.idleMode(Constants.Elevator.ELEVATOR_MOTOR_IDLE_MODE);
-    generalElevatorConfig.smartCurrentLimit(Constants.Elevator.ELEVATOR_MOTOR_CURRENT_LIMIT);
+    SparkMaxConfig generalElevatorConfig =
+        configureGeneralConfig(
+            Constants.Elevator.ELEVATOR_MOTOR_IDLE_MODE,
+            Constants.Elevator.ELEVATOR_MOTOR_CURRENT_LIMIT);
 
     leadingMotorConfig = new SparkMaxConfig().apply(generalElevatorConfig);
     followingMotorConfig = new SparkMaxConfig().apply(generalElevatorConfig);

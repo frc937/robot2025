@@ -12,6 +12,7 @@ import com.revrobotics.spark.config.SparkMaxConfig;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.MotorConfigs;
 
 /** Elevator of the robot */
 public class Elevator extends SubsystemBase {
@@ -31,24 +32,7 @@ public class Elevator extends SubsystemBase {
     this.bottomLimitSwitch =
         new DigitalInput(Constants.Elevator.ELEVATOR_BOTTOM_LIMIT_SWITCH_DIO_PORT);
 
-    configureMotors();
-  }
-
-  private void configureMotors() {
-    SparkMaxConfig generalConfig = new SparkMaxConfig();
-    generalConfig.idleMode(Constants.Elevator.ELEVATOR_MOTOR_IDLE_MODE);
-    generalConfig.smartCurrentLimit(Constants.Elevator.ELEVATOR_MOTOR_CURRENT_LIMIT);
-
-    SparkMaxConfig leftMotorConfig = new SparkMaxConfig().apply(generalConfig);
-    SparkMaxConfig rightMotorConfig = new SparkMaxConfig().apply(generalConfig);
-
-    leftMotorConfig.follow(this.rightMotor, Constants.Elevator.ELEVATOR_FOLLOWER_INVERSE_STATE);
-    rightMotorConfig.inverted(Constants.Elevator.RIGHT_ELEVATOR_MOTOR_INVERTED);
-
-    this.leftMotor.configure(
-        leftMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
-    this.rightMotor.configure(
-        rightMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
+    MotorConfigs.initElevatorConfigs(rightMotor, leftMotor);
   }
 
   /** Runs the Elevator motor */

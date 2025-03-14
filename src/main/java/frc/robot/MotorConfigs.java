@@ -23,13 +23,29 @@ public final class MotorConfigs {
     leadingMotorConfig = new SparkMaxConfig().apply(generalIntakeRollerConfig);
     followingMotorConfig = new SparkMaxConfig().apply(generalIntakeRollerConfig);
 
-    followingMotorConfig.follow(followerMotor, Constants.IntakeRollers.INTAKE_FOLLOWER_INVERSE_STATE);
+    followingMotorConfig.follow(leadingMotor, Constants.IntakeRollers.INTAKE_FOLLOWER_INVERSE_STATE);
     leadingMotorConfig.inverted(Constants.IntakeRollers.UPPER_INTAKE_MOTOR_INVERTED);
 
     leadingMotor.configure(
-        followingMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
-    followerMotor.configure(
         leadingMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
+    followerMotor.configure(
+        followingMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
   }
 
+  public static void initElevatorConfigs(SparkMax leadingMotor, SparkMax followerMotor) {
+    SparkMaxConfig generalElevatorConfig = new SparkMaxConfig();
+    generalElevatorConfig.idleMode(Constants.Elevator.ELEVATOR_MOTOR_IDLE_MODE);
+    generalElevatorConfig.smartCurrentLimit(Constants.Elevator.ELEVATOR_MOTOR_CURRENT_LIMIT);
+
+    leadingMotorConfig = new SparkMaxConfig().apply(generalElevatorConfig);
+    followingMotorConfig = new SparkMaxConfig().apply(generalElevatorConfig);
+
+    followingMotorConfig.follow(leadingMotor, Constants.Elevator.ELEVATOR_FOLLOWER_INVERSE_STATE);
+    leadingMotorConfig.inverted(Constants.Elevator.RIGHT_ELEVATOR_MOTOR_INVERTED);
+
+    leadingMotor.configure(
+        leadingMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
+    followerMotor.configure(
+        followingMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
+  }
 }

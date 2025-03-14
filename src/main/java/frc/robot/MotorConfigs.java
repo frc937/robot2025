@@ -17,6 +17,7 @@ public final class MotorConfigs {
 
   /**
    * Configures the Roller Motors for the intake, using the relavent constants.
+   *
    * @param leadingMotor The main motor leading the follower motor.
    * @param followerMotor The motor that follows the leading motor.
    */
@@ -28,7 +29,8 @@ public final class MotorConfigs {
     leadingMotorConfig = new SparkMaxConfig().apply(generalIntakeRollerConfig);
     followingMotorConfig = new SparkMaxConfig().apply(generalIntakeRollerConfig);
 
-    followingMotorConfig.follow(leadingMotor, Constants.IntakeRollers.INTAKE_FOLLOWER_INVERSE_STATE);
+    followingMotorConfig.follow(
+        leadingMotor, Constants.IntakeRollers.INTAKE_FOLLOWER_INVERSE_STATE);
     leadingMotorConfig.inverted(Constants.IntakeRollers.UPPER_INTAKE_MOTOR_INVERTED);
 
     leadingMotor.configure(
@@ -39,6 +41,7 @@ public final class MotorConfigs {
 
   /**
    * Configures the Elevator Motors for the intake, using the relavent constants.
+   *
    * @param leadingMotor The main motor leading the follower motor.
    * @param followerMotor The motor that follows the leading motor.
    */

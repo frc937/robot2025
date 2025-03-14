@@ -79,8 +79,8 @@ public class Drive extends SubsystemBase {
    */
   public ChassisSpeeds getTargetSpeeds(
       double translationX, double translationY, double headingX, double headingY) {
-        return new ChassisSpeeds();
-      }
+    return new ChassisSpeeds();
+  }
 
   /**
    * Sets the drive mode in SmartDashboard.

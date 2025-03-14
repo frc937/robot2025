@@ -9,12 +9,17 @@ import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
-/** Add your docs here. */
+/** Utility class for configuring desired motors */
 public final class MotorConfigs {
 
   private static SparkMaxConfig leadingMotorConfig;
   private static SparkMaxConfig followingMotorConfig;
 
+  /**
+   * Configures the Roller Motors for the intake, using the relavent constants.
+   * @param leadingMotor The main motor leading the follower motor.
+   * @param followerMotor The motor that follows the leading motor.
+   */
   public static void initRollerConfigs(SparkMax leadingMotor, SparkMax followerMotor) {
     SparkMaxConfig generalIntakeRollerConfig = new SparkMaxConfig();
     generalIntakeRollerConfig.idleMode(Constants.IntakeRollers.INTAKE_MOTOR_IDLE_MODE);
@@ -32,6 +37,11 @@ public final class MotorConfigs {
         followingMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
   }
 
+  /**
+   * Configures the Elevator Motors for the intake, using the relavent constants.
+   * @param leadingMotor The main motor leading the follower motor.
+   * @param followerMotor The motor that follows the leading motor.
+   */
   public static void initElevatorConfigs(SparkMax leadingMotor, SparkMax followerMotor) {
     SparkMaxConfig generalElevatorConfig = new SparkMaxConfig();
     generalElevatorConfig.idleMode(Constants.Elevator.ELEVATOR_MOTOR_IDLE_MODE);

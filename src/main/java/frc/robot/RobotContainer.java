@@ -6,11 +6,13 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import frc.robot.Controllers.ControllerAxis;
 import frc.robot.Controllers.Keymap;
 import frc.robot.commands.ControlCompressor;
 import frc.robot.commands.ExtendElevator;
 import frc.robot.commands.Intake.RunIntakeRollers;
 import frc.robot.commands.Intake.RunIntakeRollersReverse;
+import frc.robot.commands.drive.DriveRobot;
 import frc.robot.commands.RetractElevator;
 import frc.robot.subsystems.Compressor;
 import frc.robot.subsystems.Drive;
@@ -63,6 +65,32 @@ public class RobotContainer {
   /** Singleton instance of the {@link RunIntakeRollersReverse} */
   public static RunIntakeRollersReverse runIntakeRollersReverse = new RunIntakeRollersReverse();
 
+    /** Singleton instance of robot oriented {@link DriveRobot} for the whole robot. */
+  public static DriveRobot driveRobotOriented =
+      new DriveRobot(
+          Controllers.getControllerAxisSupplier(
+              Controllers.pilotController, ControllerAxis.LeftY, true),
+          Controllers.getControllerAxisSupplier(
+              Controllers.pilotController, ControllerAxis.LeftX, true),
+          Controllers.getControllerAxisSupplier(
+              Controllers.pilotController, ControllerAxis.RightX, true),
+          false,
+          Constants.Drivetrain.MAX_SPEED,
+          Constants.Drivetrain.THEORETICAL_MAX_ANGULAR_SPEED);
+
+  /** Singleton instance of field oriented {@link DriveRobot} for the whole robot. */
+  public static DriveRobot driveFieldOriented =
+      new DriveRobot(
+          Controllers.getControllerAxisSupplier(
+              Controllers.pilotController, ControllerAxis.LeftY, true),
+          Controllers.getControllerAxisSupplier(
+              Controllers.pilotController, ControllerAxis.LeftX, true),
+          Controllers.getControllerAxisSupplier(
+              Controllers.pilotController, ControllerAxis.RightX, true),
+          true,
+          Constants.Drivetrain.MAX_SPEED,
+          Constants.Drivetrain.THEORETICAL_MAX_ANGULAR_SPEED);
+
   /*
    * ***********************
    * * OTHER INSTANCE VARS *
@@ -73,6 +101,7 @@ public class RobotContainer {
     configureBindings();
 
     compressor.setDefaultCommand(controlCompressor);
+    drive.setDefaultCommand(driveFieldOriented);
   }
 
   private void configureBindings() {

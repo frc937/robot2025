@@ -36,7 +36,7 @@ public class RobotContainer {
   public static Compressor compressor ;//= new Compressor();
 
   // /** Singleton instance of {@link Elevator} for the whole robot */
-  public static Elevator elevator;// = new Elevator();
+  public static Elevator elevator = new Elevator();
 
   // /** Singleton instance of the {@link IntakeRollers} for the whole robot */
    public static IntakeRollers intakeRollers;//= new IntakeRollers();
@@ -54,10 +54,10 @@ public class RobotContainer {
   public static ControlCompressor controlCompressor ;//= new ControlCompressor();
 
   // /** Singleton instance of the {@link ExtendElevator} for the whole robot. */
-   public static ExtendElevator extendElevator  ;//= new ExtendElevator();
+   public static ExtendElevator extendElevator = new ExtendElevator();
 
   // /** Singleton instance of the {@link RetractElevator} for the whole robot */
-  public static RetractElevator retractElevator ;//= new RetractElevator();
+  public static RetractElevator retractElevator = new RetractElevator();
 
   // /** Singleton instance of the {@link RunIntakeRollers} for the whole robot */
   public static RunIntakeRollers runIntakeRollers;// = new RunIntakeRollers();
@@ -102,6 +102,8 @@ public class RobotContainer {
 
     //compressor.setDefaultCommand(controlCompressor);
     drive.setDefaultCommand(driveFieldOriented);
+    // Is this a bad idea? Maybe. Am I writing this at 10pm the night before comp? Yes.
+    elevator.setDefaultCommand(extendElevator);
   }
 
   private void configureBindings() {

@@ -50,7 +50,9 @@ public final class Controllers {
 
   /** Configures the robot with default keybinds for competition. */
   private static void configureDefaultKeybinds() {
-
+    // Ok so. Last Minute. Everything failed. 
+    // The idea is to retract the elevator to lift the robot. I think there's a pretty good chance it will completely break elevator but honestly? who cares.
+    pilotController.a().onTrue(RobotContainer.retractElevator);
   }
 
   /**

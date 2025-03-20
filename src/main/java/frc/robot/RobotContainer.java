@@ -32,14 +32,14 @@ public class RobotContainer {
    * awful.
    */
 
-  /** Singleton instance of {@link Compressor} for the whole robot. */
-  public static Compressor compressor = new Compressor();
+  // /** Singleton instance of {@link Compressor} for the whole robot. */
+  public static Compressor compressor ;//= new Compressor();
 
-  /** Singleton instance of {@link Elevator} for the whole robot */
-  public static Elevator elevator = new Elevator();
+  // /** Singleton instance of {@link Elevator} for the whole robot */
+  public static Elevator elevator;// = new Elevator();
 
-  /** Singleton instance of the {@link IntakeRollers} for the whole robot */
-  public static IntakeRollers intakeRollers = new IntakeRollers();
+  // /** Singleton instance of the {@link IntakeRollers} for the whole robot */
+   public static IntakeRollers intakeRollers;//= new IntakeRollers();
 
   /** Singleton instance of the {@link Drive drivetrain} for the whole robot */
   public static Drive drive = new Drive();
@@ -50,20 +50,20 @@ public class RobotContainer {
    * ************
    */
 
-  /** Singleton instance of the {@link ControlCompressor} for the whole robot. */
-  public static ControlCompressor controlCompressor = new ControlCompressor();
+  // /** Singleton instance of the {@link ControlCompressor} for the whole robot. */
+  public static ControlCompressor controlCompressor ;//= new ControlCompressor();
 
-  /** Singleton instance of the {@link ExtendElevator} for the whole robot. */
-  public static ExtendElevator extendElevator = new ExtendElevator();
+  // /** Singleton instance of the {@link ExtendElevator} for the whole robot. */
+   public static ExtendElevator extendElevator  ;//= new ExtendElevator();
 
-  /** Singleton instance of the {@link RetractElevator} for the whole robot */
-  public static RetractElevator retractElevator = new RetractElevator();
+  // /** Singleton instance of the {@link RetractElevator} for the whole robot */
+  public static RetractElevator retractElevator ;//= new RetractElevator();
 
-  /** Singleton instance of the {@link RunIntakeRollers} for the whole robot */
-  public static RunIntakeRollers runIntakeRollers = new RunIntakeRollers();
+  // /** Singleton instance of the {@link RunIntakeRollers} for the whole robot */
+  public static RunIntakeRollers runIntakeRollers;// = new RunIntakeRollers();
 
-  /** Singleton instance of the {@link RunIntakeRollersReverse} */
-  public static RunIntakeRollersReverse runIntakeRollersReverse = new RunIntakeRollersReverse();
+  // /** Singleton instance of the {@link RunIntakeRollersReverse} */
+  public static RunIntakeRollersReverse runIntakeRollersReverse ;//= new RunIntakeRollersReverse();
 
     /** Singleton instance of robot oriented {@link DriveRobot} for the whole robot. */
   public static DriveRobot driveRobotOriented =
@@ -100,7 +100,7 @@ public class RobotContainer {
   public RobotContainer() {
     configureBindings();
 
-    compressor.setDefaultCommand(controlCompressor);
+    //compressor.setDefaultCommand(controlCompressor);
     drive.setDefaultCommand(driveFieldOriented);
   }
 

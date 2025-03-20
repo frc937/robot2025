@@ -50,13 +50,7 @@ public final class Controllers {
 
   /** Configures the robot with default keybinds for competition. */
   private static void configureDefaultKeybinds() {
-    operatorController.leftBumper().whileTrue(RobotContainer.runIntakeRollers);
-    operatorController.rightBumper().whileTrue(RobotContainer.runIntakeRollersReverse);
-    /*TODO:Set intake routine to left trigger*/
-    /*TODO:Fire algea routine */
-    /*TODO: Add extend intake keybind */
-    operatorController.x().whileTrue(RobotContainer.retractElevator);
-    operatorController.y().whileTrue(RobotContainer.extendElevator);
+
   }
 
   /**
@@ -65,13 +59,6 @@ public final class Controllers {
    */
   private static void configureOperatorlessKeybinds() {
 
-    pilotController.leftBumper().whileTrue(RobotContainer.runIntakeRollers);
-    pilotController.rightBumper().whileTrue(RobotContainer.runIntakeRollersReverse);
-    /*TODO:Set intake routine to left trigger*/
-    /*TODO: Fire algea routine */
-    /*TODO:Add extend intake keybind */
-    pilotController.x().whileTrue(RobotContainer.retractElevator);
-    pilotController.y().whileTrue(RobotContainer.extendElevator);
   }
 
   /**

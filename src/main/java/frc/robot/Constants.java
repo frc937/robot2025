@@ -49,39 +49,37 @@ public final class Constants {
   public static final class Elevator {
 
     /** Motor ID for the left elevator motor */
-    public static final int LEFT_ELEVATOR_MOTOR_ID = 0;
+    public static final int LEFT_ELEVATOR_MOTOR_ID = 11;
 
     /** Motor ID for the left elevator motor */
-    public static final int RIGHT_ELEVATOR_MOTOR_ID = 0;
-
-    /** Dio port Id for the top elevator limit switch */
-    public static final int ELEVATOR_TOP_LIMIT_SWITCH_DIO_PORT = 0;
-
-    /** DIO port ID for the bottom elevator limit switch */
-    public static final int ELEVATOR_BOTTOM_LIMIT_SWITCH_DIO_PORT = 0;
+    public static final int RIGHT_ELEVATOR_MOTOR_ID = 15;
 
     /** Inversion state of the right elevator motor */
     public static final boolean RIGHT_ELEVATOR_MOTOR_INVERTED = false;
 
-    /** spead we want to run the elevator at */
-    public static final double ELEVATOR_MOTOR_SPEED = 0;
-
     /** Inversion state for the elevator follower motor */
-    public static final boolean ELEVATOR_FOLLOWER_INVERSE_STATE = false;
+    public static final boolean ELEVATOR_FOLLOWER_INVERSE_STATE = true;
 
     /** The current limit (in amps) for the elevator motor(s). */
-    public static final int ELEVATOR_MOTOR_CURRENT_LIMIT = 0;
+    public static final int ELEVATOR_MOTOR_CURRENT_LIMIT = 60;
 
     /** Idle mode for the elevator motors (Either break or coast). */
     public static final IdleMode ELEVATOR_MOTOR_IDLE_MODE = IdleMode.kBrake;
+
+    /** Pid for the elevator */
+    public static final double[] ELEVATOR_PID = new double[] {0.225, 0.001, 0.01};
+
+    public static final double L1_SETPOINT = 0;
+    public static final double L2_SETPOINT = 0;
+    public static final double L3_SETPOINT = 0;
+
+    public static final double ELEVATOR_LIFT_SPEED = 0.5;
   }
 
   public static final class IntakeRollers {
-    /** Motor ID for the Lower intake motor */
-    public static final int LOWER_INTAKE_MOTOR_ID = 0;
 
     /** Motor ID for the Upper intake motor */
-    public static final int UPPER_INTAKE_MOTOR_ID = 0;
+    public static final int INTAKE_MOTOR_ID = 12;
 
     /** Dio port ID for the intake limit switch */
     public static final int INTAKE_LIMIT_SWITCH_DIO_PORT = 0;
@@ -90,23 +88,26 @@ public final class Constants {
     public static final boolean UPPER_INTAKE_MOTOR_INVERTED = false;
 
     /** speed we want the intake roller motors at */
-    public static final double INTAKE_MOTOR_SPEED = 0;
+    public static final double INTAKE_MOTOR_SPEED = 0.5;
 
     /** Inversion state of the followwer intake motor */
     public static final boolean INTAKE_FOLLOWER_INVERSE_STATE = false;
 
     /** The current limit (in amps) for the elevator motor(s). */
-    public static final int INTAKE_MOTOR_CURRENT_LIMIT = 0;
+    public static final int INTAKE_MOTOR_CURRENT_LIMIT = 40;
 
     /** Idle mode for the elvator motors (Either break or coast) */
     public static final IdleMode INTAKE_MOTOR_IDLE_MODE = IdleMode.kBrake;
   }
+
   /** The constants for the drivetrain */
   public static final class Drivetrain {
     /** The max speed the robot can go in m/s */
     public static final double MAX_SPEED = Units.feetToMeters(14.5);
-    /** Should the drivetrain motors break on  */
+
+    /** Should the drivetrain motors break on */
     public static final boolean MOTOR_BREAK_ON_IDLE = true;
+
     /** An empty translation for the robot. */
     public static final Translation2d ZERO_TRANSLATION = new Translation2d();
 
@@ -115,5 +116,10 @@ public final class Constants {
 
     /** The theoretical max speed the robot can rotate */
     public static final double THEORETICAL_MAX_ANGULAR_SPEED = 100;
+  }
+
+  public static final class Auto {
+    public static final double TAXI_WAIT_DURATION = 1.5;
+    public static final double TAXI_AUTO_SPEED = 0.50;
   }
 }

@@ -50,18 +50,24 @@ public final class Controllers {
 
   /** Configures the robot with default keybinds for competition. */
   private static void configureDefaultKeybinds() {
-    // Ok so. Last Minute. Everything failed. 
-    // The idea is to retract the elevator to lift the robot. I think there's a pretty good chance it will completely break elevator but honestly? who cares.
-    pilotController.a().onTrue(RobotContainer.retractElevator);
+    // Ok so. Last Minute. Everything failed.
+    // The idea is to retract the elevator to lift the robot. I think there's a pretty good chance
+    // it will completely break elevator but honestly? who cares.
+    pilotController.povUp().whileTrue(RobotContainer.rawRetractElevator);
+    pilotController.povDown().whileTrue(RobotContainer.rawExtendElevator);
+
+    pilotController.a().onTrue(RobotContainer.runIntakeRollers);
+    pilotController.b().onTrue(RobotContainer.runIntakeRollersReverse);
+    // pilotController.x().onTrue(RobotContainer.elevatorCounter.decrementCommand());
+    // pilotController.b().onTrue(RobotContainer.elevatorCounter.incrementCommand());
+    // pilotController.rightBumper().whileTrue(RobotContainer.elevatorCounter.runActiveCommand());
   }
 
   /**
    * Configures the robot with keybinds for if we can't use the operator controller. (All buttons
    * bound to pilotController)
    */
-  private static void configureOperatorlessKeybinds() {
-
-  }
+  private static void configureOperatorlessKeybinds() {}
 
   /**
    * Configures robot keybinds.

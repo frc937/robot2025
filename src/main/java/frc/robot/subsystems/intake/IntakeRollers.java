@@ -6,7 +6,6 @@ package frc.robot.subsystems.intake;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.MotorConfigs;
@@ -14,31 +13,25 @@ import frc.robot.MotorConfigs;
 /** Subsystem for the intake rollers */
 public class IntakeRollers extends SubsystemBase {
 
-  private SparkMax upperMotor;
-  private SparkMax lowerMotor;
-  private DigitalInput limitSwitch;
+  private SparkMax intakeMotor;
 
   /** Creates a new IntakeRollers. */
   public IntakeRollers() {
 
-    this.upperMotor =
-        new SparkMax(Constants.IntakeRollers.UPPER_INTAKE_MOTOR_ID, MotorType.kBrushless);
-    this.lowerMotor =
-        new SparkMax(Constants.IntakeRollers.LOWER_INTAKE_MOTOR_ID, MotorType.kBrushless);
-    this.limitSwitch = new DigitalInput(Constants.IntakeRollers.INTAKE_LIMIT_SWITCH_DIO_PORT);
+    this.intakeMotor = new SparkMax(Constants.IntakeRollers.INTAKE_MOTOR_ID, MotorType.kBrushed);
 
-    MotorConfigs.initRollerConfigs(upperMotor, lowerMotor);
+    MotorConfigs.initRollerConfigs(intakeMotor);
   }
 
   /** Runs the Intake Rollers */
   public void runRollers() {
-    upperMotor.set(Constants.IntakeRollers.INTAKE_MOTOR_SPEED);
+    intakeMotor.set(Constants.IntakeRollers.INTAKE_MOTOR_SPEED);
   }
 
   /** Runs the Intake Rollers in reverse */
   public void runRollersReverse() {
 
-    upperMotor.set(-Constants.IntakeRollers.INTAKE_MOTOR_SPEED);
+    intakeMotor.set(-Constants.IntakeRollers.INTAKE_MOTOR_SPEED);
   }
 
   /**
@@ -46,15 +39,15 @@ public class IntakeRollers extends SubsystemBase {
    *
    * @return status of the limit switch
    */
-  public boolean getLimitSwitch() {
+  // public boolean getLimitSwitch() {
 
-    return !limitSwitch.get();
-  }
+  // return !limitSwitch.get();
+  // }
 
   /** stops the rollers */
   public void stop() {
 
-    upperMotor.set(0);
+    intakeMotor.set(0);
   }
 
   @Override

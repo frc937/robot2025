@@ -16,6 +16,6 @@ public class TaxiAuto extends ParallelDeadlineGroup {
   /** Creates a new TaxiAuto. */
   public TaxiAuto() {
     super(new WaitCommand(Constants.Auto.TAXI_WAIT_DURATION));
-    addCommands(new DriveAutoRobotOriented(-Constants.Auto.TAXI_AUTO_SPEED, 0));
+    addCommands(new DriveAutoRobotOriented(-Constants.Auto.TAXI_AUTO_SPEED, Constants.Auto.TAXI_AUTO_ROTATION));
   }
 }

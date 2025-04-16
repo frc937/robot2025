@@ -121,5 +121,6 @@ public final class Constants {
   public static final class Auto {
     public static final double TAXI_WAIT_DURATION = 1.5;
     public static final double TAXI_AUTO_SPEED = 0.50;
+    public static final double TAXI_AUTO_ROTATION = 0;
   }
 }

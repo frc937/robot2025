@@ -69,10 +69,16 @@ public final class Constants {
     /** Pid for the elevator */
     public static final double[] ELEVATOR_PID = new double[] {0.225, 0.001, 0.01};
 
+    /** Height of the first Elevator level */
     public static final double L1_SETPOINT = 0;
+
+    /** Height of the second Elevator level */
     public static final double L2_SETPOINT = 0;
+
+    /** Height of the third Elevator level */
     public static final double L3_SETPOINT = 0;
 
+    /** Speed of the Elevator */
     public static final double ELEVATOR_LIFT_SPEED = 0.5;
   }
 
@@ -118,9 +124,15 @@ public final class Constants {
     public static final double THEORETICAL_MAX_ANGULAR_SPEED = 100;
   }
 
+  /** Constants for the autos */
   public static final class Auto {
+    /** How long to wait before starting taxi */
     public static final double TAXI_WAIT_DURATION = 1.5;
+
+    /** Speed of the taxi auto */
     public static final double TAXI_AUTO_SPEED = 0.50;
+
+    /** Rotation of taxi auto */
     public static final double TAXI_AUTO_ROTATION = 0;
   }
 }

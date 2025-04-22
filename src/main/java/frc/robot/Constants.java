@@ -122,6 +122,12 @@ public final class Constants {
 
     /** The theoretical max speed the robot can rotate */
     public static final double THEORETICAL_MAX_ANGULAR_SPEED = 100;
+
+    /** Muliplier for movement speed (0.0 - 1.0) */
+    public static final double MOVEMENT_MULTIPLITER = 0.80;
+
+    /** Multiplier for turn speed (0.0 - 1.0) */
+    public static final double TURN_MULTIPLIER = 0.80;
   }
 
   /** Constants for the autos */

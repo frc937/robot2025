@@ -5,6 +5,7 @@
 package frc.robot.commands.drive;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Drive;
 import java.util.function.Supplier;
@@ -41,7 +42,9 @@ public class DriveRobot extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    this.drive.driveRobot(xSupplier.get() * 0.80, ySupplier.get() * 0.80);
+    this.drive.driveRobot(
+        xSupplier.get() * Constants.Drivetrain.MOVEMENT_MULTIPLITER,
+        ySupplier.get() * Constants.Drivetrain.TURN_MULTIPLIER);
   }
 
   // Called once the command ends or is interrupted.

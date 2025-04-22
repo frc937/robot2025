@@ -10,6 +10,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 /** The subsystem that represents the drivetrain. */
 public class Drive extends SubsystemBase {
@@ -58,10 +59,10 @@ public class Drive extends SubsystemBase {
 
   /** Creates a new Drive. */
   public Drive() {
-    fl = new TalonFX(6); // 6
-    fr = new TalonFX(8); // 8
-    bl = new TalonFX(4); // 10
-    br = new TalonFX(10); // 4
+    fl = new TalonFX(Constants.Drivetrain.FRONT_LEFT_ID);
+    fr = new TalonFX(Constants.Drivetrain.FRONT_RIGHT_ID);
+    bl = new TalonFX(Constants.Drivetrain.BACK_LEFT_ID);
+    br = new TalonFX(Constants.Drivetrain.BACK_RIGHT_ID);
 
     bl.setControl(new Follower(fl.getDeviceID(), false));
     br.setControl(new Follower(fr.getDeviceID(), false));

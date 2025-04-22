@@ -128,6 +128,18 @@ public final class Constants {
 
     /** Multiplier for turn speed (0.0 - 1.0) */
     public static final double TURN_MULTIPLIER = 0.80;
+
+    /** ID for the front left motor */
+    public static final int FRONT_LEFT_ID = 6; // 6
+
+    /** ID for the front right motor */
+    public static final int FRONT_RIGHT_ID = 8; // 8
+
+    /** ID for the back left motor */
+    public static final int BACK_LEFT_ID = 4; // 10
+
+    /** ID for the back right motor */
+    public static final int BACK_RIGHT_ID = 10; // 4
   }
 
   /** Constants for the autos */

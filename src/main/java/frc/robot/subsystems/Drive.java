@@ -4,16 +4,77 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.math.geometry.Rotation2d;
+import com.ctre.phoenix6.controls.Follower;
+import com.ctre.phoenix6.hardware.TalonFX;
 import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 /** The subsystem that represents the drivetrain. */
 public class Drive extends SubsystemBase {
+  private TalonFX fl, fr, bl, br;
+  private TalonFXWrapper flr, frr;
+
+  private DifferentialDrive dd;
+
+  private static class TalonFXWrapper implements MotorController {
+    private final TalonFX talon;
+
+    public TalonFXWrapper(TalonFX talon) {
+      this.talon = talon;
+    }
+
+    @Override
+    public void set(double speed) {
+      this.talon.set(speed);
+    }
+
+    @Override
+    public double get() {
+      return this.talon.get();
+    }
+
+    @Override
+    public void setInverted(boolean isInverted) {
+      this.talon.setInverted(isInverted);
+    }
+
+    @Override
+    public boolean getInverted() {
+      return this.talon.getInverted();
+    }
+
+    @Override
+    public void disable() {
+      this.talon.disable();
+    }
+
+    @Override
+    public void stopMotor() {
+      this.talon.stopMotor();
+    }
+  }
 
   /** Creates a new Drive. */
-  public Drive() {}
+  public Drive() {
+    fl = new TalonFX(Constants.Drivetrain.FRONT_LEFT_ID);
+    fr = new TalonFX(Constants.Drivetrain.FRONT_RIGHT_ID);
+    bl = new TalonFX(Constants.Drivetrain.BACK_LEFT_ID);
+    br = new TalonFX(Constants.Drivetrain.BACK_RIGHT_ID);
+
+    bl.setControl(new Follower(fl.getDeviceID(), false));
+    br.setControl(new Follower(fr.getDeviceID(), false));
+
+    flr = new TalonFXWrapper(fl);
+    frr = new TalonFXWrapper(fr);
+
+    dd = new DifferentialDrive(flr, frr);
+
+    // fl.setInverted(true);
+    // bl.setInverted(true);
+  }
 
   /**
    * Drives the robot in either field relative or robot relative.
@@ -24,80 +85,13 @@ public class Drive extends SubsystemBase {
    *     positive.
    * @param isFieldOriented If the robot should either drive field oriented or robot oriented.
    */
-  public void driveRobot(Translation2d translation, double z, boolean isFieldOriented) {}
+  public void driveRobot(double speed, double rot) {
+    dd.arcadeDrive(speed, rot);
+  }
 
   /** Stops all motors in the subsystem. */
-  public void stop() {}
-
-  /** Points the wheels toward the inside and stops the wheels from moving in any direction. */
-  public void enterXMode() {}
-
-  /**
-   * Zeroes the NavX gyro. Mostly used for resetting the angle for field-oriented drive (for now).
-   *
-   * <p>Somewhat notably, this will also reset odometry to the same position it's currently at, but
-   * facing towards zero.
-   */
-  public void zeroGyro() {}
-
-  /**
-   * Gets the maximum speed the robot chassis can achieve in m/s.
-   *
-   * @return Maximum speed the robot chassis can achieve in m/s.
-   */
-  public double getMaximumSpeed() {
-    return -1.0;
-  }
-
-  /**
-   * Gets the maximum angular speed the robot chassis can achieve in rad/s.
-   *
-   * @return Maximum angular speed the robot chassis can achieve in rad/s.
-   */
-  public double getMaximumAngularSpeed() {
-    return -1.0;
-  }
-
-  /**
-   * Set the heading correction capabilities of YAGSL. Should only be enabled when heading
-   * correction capabilities are in use
-   *
-   * @param state SwerveDrive.headingCorrection state
-   */
-  public void setHeadingCorrection(boolean state) {}
-
-  /**
-   * Takes [-1, 1] joystick-like inputs and converts them to a {@link ChassisSpeeds} object that
-   * represents the commanded robot velocities
-   *
-   * @param translationX joystick input for the left to right axis. [-1, 1], left is positive.
-   * @param translationY joystick input for the forward to backward axis. [-1, 1], forward is
-   *     positive.
-   * @param headingX x component of the cartesian angle of the robot's heading
-   * @param headingY y component of the cartesian angle of the robot's heading
-   * @return {@link ChassisSpeeds} object that represents the commanded robot velocities
-   */
-  public ChassisSpeeds getTargetSpeeds(
-      double translationX, double translationY, double headingX, double headingY) {
-    return new ChassisSpeeds();
-  }
-
-  /**
-   * Sets the drive mode in SmartDashboard.
-   *
-   * <p><strong> THIS DOES NOT SET THE ROBOT'S DRIVE MODE</strong>
-   *
-   * @param driveMode The mode to display in SmartDashboard.
-   */
-  public void setDriveMode(String driveMode) {}
-
-  /**
-   * Returns the heading of the robot.
-   *
-   * @return The heading of the robot.
-   */
-  public Rotation2d getHeading() {
-    return new Rotation2d();
+  public void stop() {
+    dd.stopMotor();
   }
 
   /** Runs every scheduler run. */

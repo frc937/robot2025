@@ -8,33 +8,32 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Elevator;
 
-/** Command that retracts elevator on robot */
-public class RetractElevator extends Command {
+/* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
+public class RawExtendElevator extends Command {
+  private Elevator elevator;
 
-  public Elevator elevator;
-
-  /** Creates a new RetractElevator. */
-  public RetractElevator() {
-
+  /** Creates a new RawExtendElevator. */
+  public RawExtendElevator() {
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(RobotContainer.elevator);
     this.elevator = RobotContainer.elevator;
-    addRequirements(this.elevator);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
-    this.elevator.resetElevator();
+    this.elevator.rawExtendElevator();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    this.elevator.rawExtendElevator();
+  }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-
     this.elevator.stop();
   }
 

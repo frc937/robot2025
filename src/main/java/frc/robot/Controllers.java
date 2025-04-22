@@ -50,29 +50,24 @@ public final class Controllers {
 
   /** Configures the robot with default keybinds for competition. */
   private static void configureDefaultKeybinds() {
-    operatorController.leftBumper().whileTrue(RobotContainer.runIntakeRollers);
-    operatorController.rightBumper().whileTrue(RobotContainer.runIntakeRollersReverse);
-    /*TODO:Set intake routine to left trigger*/
-    /*TODO:Fire algea routine */
-    /*TODO: Add extend intake keybind */
-    operatorController.x().whileTrue(RobotContainer.retractElevator);
-    operatorController.y().whileTrue(RobotContainer.extendElevator);
+    // Ok so. Last Minute. Everything failed.
+    // The idea is to retract the elevator to lift the robot. I think there's a pretty good chance
+    // it will completely break elevator but honestly? who cares.
+    pilotController.povUp().whileTrue(RobotContainer.rawRetractElevator);
+    pilotController.povDown().whileTrue(RobotContainer.rawExtendElevator);
+
+    pilotController.a().onTrue(RobotContainer.runIntakeRollers);
+    pilotController.b().onTrue(RobotContainer.runIntakeRollersReverse);
+    // pilotController.x().onTrue(RobotContainer.elevatorCounter.decrementCommand());
+    // pilotController.b().onTrue(RobotContainer.elevatorCounter.incrementCommand());
+    // pilotController.rightBumper().whileTrue(RobotContainer.elevatorCounter.runActiveCommand());
   }
 
   /**
    * Configures the robot with keybinds for if we can't use the operator controller. (All buttons
    * bound to pilotController)
    */
-  private static void configureOperatorlessKeybinds() {
-
-    pilotController.leftBumper().whileTrue(RobotContainer.runIntakeRollers);
-    pilotController.rightBumper().whileTrue(RobotContainer.runIntakeRollersReverse);
-    /*TODO:Set intake routine to left trigger*/
-    /*TODO: Fire algea routine */
-    /*TODO:Add extend intake keybind */
-    pilotController.x().whileTrue(RobotContainer.retractElevator);
-    pilotController.y().whileTrue(RobotContainer.extendElevator);
-  }
+  private static void configureOperatorlessKeybinds() {}
 
   /**
    * Configures robot keybinds.

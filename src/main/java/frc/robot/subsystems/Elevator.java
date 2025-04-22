@@ -6,7 +6,9 @@ package frc.robot.subsystems;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
-import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.networktables.GenericEntry;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.MotorConfigs;
@@ -14,66 +16,54 @@ import frc.robot.MotorConfigs;
 /** Elevator of the robot */
 public class Elevator extends SubsystemBase {
 
-  private SparkMax leftMotor;
-  private SparkMax rightMotor;
-  private DigitalInput topLimitSwitch;
-  private DigitalInput bottomLimitSwitch;
+  private SparkMax leftFollowMotor;
+  private SparkMax rightLeadMotor;
+
+  private ShuffleboardTab debug = Shuffleboard.getTab("Debug");
+
+  private GenericEntry encoderValue = debug.add("Elevator Encoder value", 0.0).getEntry();
 
   /** Creates a new Elevator. */
   public Elevator() {
 
-    this.leftMotor = new SparkMax(Constants.Elevator.LEFT_ELEVATOR_MOTOR_ID, MotorType.kBrushless);
-    this.rightMotor =
+    this.leftFollowMotor =
+        new SparkMax(Constants.Elevator.LEFT_ELEVATOR_MOTOR_ID, MotorType.kBrushless);
+    this.rightLeadMotor =
         new SparkMax(Constants.Elevator.RIGHT_ELEVATOR_MOTOR_ID, MotorType.kBrushless);
-    this.topLimitSwitch = new DigitalInput(Constants.Elevator.ELEVATOR_TOP_LIMIT_SWITCH_DIO_PORT);
-    this.bottomLimitSwitch =
-        new DigitalInput(Constants.Elevator.ELEVATOR_BOTTOM_LIMIT_SWITCH_DIO_PORT);
 
-    MotorConfigs.initElevatorConfigs(rightMotor, leftMotor);
+    MotorConfigs.initElevatorConfigs(rightLeadMotor, leftFollowMotor);
+    // pid = this.rightLeadMotor.getClosedLoopController();
+  }
+
+  public void rawExtendElevator() {
+    rightLeadMotor.set(Constants.Elevator.ELEVATOR_LIFT_SPEED);
+    leftFollowMotor.set(-Constants.Elevator.ELEVATOR_LIFT_SPEED);
+  }
+
+  public void rawRetractElevator() {
+    rightLeadMotor.set(-Constants.Elevator.ELEVATOR_LIFT_SPEED);
+    leftFollowMotor.set(Constants.Elevator.ELEVATOR_LIFT_SPEED);
   }
 
   /** Runs the Elevator motor */
-  public void extendElevator() {
-
-    rightMotor.set(Constants.Elevator.ELEVATOR_MOTOR_SPEED);
+  public void extendElevator(double target) {
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   /** Runs the elevator motors in reverse */
-  public void retractElevator() {
-
-    rightMotor.set(-Constants.Elevator.ELEVATOR_MOTOR_SPEED);
-  }
-
-  /**
-   * Returns a Boolean Value that is whether or not the extension limit switch(for the elevator) has
-   * been activated.
-   *
-   * @return the status of the top limit switch
-   */
-  public boolean getTopLimitSwitch() {
-    /*assumes the limit switch is wired to be closed */
-    return !topLimitSwitch.get();
-  }
-
-  /**
-   * Returns a Boolean Value that is whether or not the retraction limit switch(for the elevator)
-   * has been activated.
-   *
-   * @return the status of the bottom limit switch
-   */
-  public boolean getBottomLimitSwitch() {
-    /*assumes the limit switch is wired to be closed */
-    return !bottomLimitSwitch.get();
+  public void resetElevator() {
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   /** Stops the elevator motors */
   public void stop() {
-
-    rightMotor.set(0);
+    rightLeadMotor.set(0);
+    leftFollowMotor.set(0);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    encoderValue.setDouble(rightLeadMotor.getAbsoluteEncoder().getPosition());
   }
 }

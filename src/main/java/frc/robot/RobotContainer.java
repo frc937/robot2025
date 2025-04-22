@@ -5,14 +5,18 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Commands;
+import frc.robot.Controllers.ControllerAxis;
 import frc.robot.Controllers.Keymap;
 import frc.robot.commands.ControlCompressor;
-import frc.robot.commands.ExtendElevator;
 import frc.robot.commands.Intake.RunIntakeRollers;
 import frc.robot.commands.Intake.RunIntakeRollersReverse;
+import frc.robot.commands.RawExtendElevator;
+import frc.robot.commands.RawRetractElevator;
 import frc.robot.commands.RetractElevator;
+import frc.robot.commands.auto.TaxiAuto;
+import frc.robot.commands.drive.DriveRobot;
 import frc.robot.subsystems.Compressor;
+import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.intake.IntakeRollers;
 
@@ -29,14 +33,17 @@ public class RobotContainer {
    * awful.
    */
 
-  /** Singleton instance of {@link Compressor} for the whole robot. */
-  public static Compressor compressor = new Compressor();
+  // /** Singleton instance of {@link Compressor} for the whole robot. */
+  public static Compressor compressor; // = new Compressor();
 
-  /** Singleton instance of {@link Elevator} for the whole robot */
+  // /** Singleton instance of {@link Elevator} for the whole robot */
   public static Elevator elevator = new Elevator();
 
-  /** Singleton instance of the {@link IntakeRollers} for the whole robot */
+  // /** Singleton instance of the {@link IntakeRollers} for the whole robot */
   public static IntakeRollers intakeRollers = new IntakeRollers();
+
+  /** Singleton instance of the {@link Drive drivetrain} for the whole robot */
+  public static Drive drive = new Drive();
 
   /*
    * ************
@@ -44,20 +51,49 @@ public class RobotContainer {
    * ************
    */
 
-  /** Singleton instance of the {@link ControlCompressor} for the whole robot. */
-  public static ControlCompressor controlCompressor = new ControlCompressor();
+  // /** Singleton instance of the {@link ControlCompressor} for the whole robot. */
+  public static ControlCompressor controlCompressor; // = new ControlCompressor();
 
-  /** Singleton instance of the {@link ExtendElevator} for the whole robot. */
-  public static ExtendElevator extendElevator = new ExtendElevator();
+  // /** Singleton instance of the {@link ExtendElevator} for the whole robot. */
+  // public static ExtendElevator extendElevatorToL1 = new ExtendElevator(1);
+  // public static ExtendElevator extendElevatorToL2 = new ExtendElevator(2);
 
-  /** Singleton instance of the {@link RetractElevator} for the whole robot */
+  // /** Singleton instance of the {@link RetractElevator} for the whole robot */
   public static RetractElevator retractElevator = new RetractElevator();
 
-  /** Singleton instance of the {@link RunIntakeRollers} for the whole robot */
+  public static RawExtendElevator rawExtendElevator = new RawExtendElevator();
+  public static RawRetractElevator rawRetractElevator = new RawRetractElevator();
+
+  // public static Counter elevatorCounter =
+  //     new Counter(retractElevator, extendElevatorToL1, extendElevatorToL2);
+
+  // /** Singleton instance of the {@link RunIntakeRollers} for the whole robot */
   public static RunIntakeRollers runIntakeRollers = new RunIntakeRollers();
 
-  /** Singleton instance of the {@link RunIntakeRollersReverse} */
+  // /** Singleton instance of the {@link RunIntakeRollersReverse} */
   public static RunIntakeRollersReverse runIntakeRollersReverse = new RunIntakeRollersReverse();
+
+  /** Singleton instance of robot oriented {@link DriveRobot} for the whole robot. */
+  public static DriveRobot driveRobotOriented =
+      new DriveRobot(
+          Controllers.getControllerAxisSupplier(
+              Controllers.pilotController, ControllerAxis.LeftY, true),
+          Controllers.getControllerAxisSupplier(
+              Controllers.pilotController, ControllerAxis.RightX, true),
+          Controllers.getControllerAxisSupplier(
+              Controllers.pilotController, ControllerAxis.RightX, true),
+          false);
+
+  /** Singleton instance of field oriented {@link DriveRobot} for the whole robot. */
+  public static DriveRobot driveFieldOriented =
+      new DriveRobot(
+          Controllers.getControllerAxisSupplier(
+              Controllers.pilotController, ControllerAxis.LeftY, true),
+          Controllers.getControllerAxisSupplier(
+              Controllers.pilotController, ControllerAxis.RightX, true),
+          Controllers.getControllerAxisSupplier(
+              Controllers.pilotController, ControllerAxis.RightX, true),
+          false);
 
   /*
    * ***********************
@@ -68,7 +104,8 @@ public class RobotContainer {
   public RobotContainer() {
     configureBindings();
 
-    compressor.setDefaultCommand(controlCompressor);
+    // compressor.setDefaultCommand(controlCompressor);
+    drive.setDefaultCommand(driveFieldOriented);
   }
 
   private void configureBindings() {
@@ -77,6 +114,6 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return Commands.print("No autonomous command configured");
+    return new TaxiAuto();
   }
 }
